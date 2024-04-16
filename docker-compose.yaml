@@ -1,0 +1,23 @@
+services:
+  app: &app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "cargo watch -x run"
+    environment:
+      APP_ADDR: ${APP_ADDR}
+      BOT_TOKEN: ${BOT_TOKEN}
+      BOT_PAYMENT_KEY: ${BOT_PAYMENT_KEY}
+      SUPABASE_ENDPOINT: ${SUPABASE_ENDPOINT}
+      SUPABASE_ANON_API_KEY: ${SUPABASE_ANON_API_KEY}
+      SUPABASE_SERVICE_API_KEY: ${SUPABASE_SERVICE_API_KEY}
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/app
+      - cargo-home:/usr/local/cargo
+      - rustup-home:/usr/local/rustup
+
+volumes:
+  cargo-home:
+  rustup-home:

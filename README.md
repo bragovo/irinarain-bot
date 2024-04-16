@@ -1,1 +1,1 @@
-# irinarain-bot
+# rain-core
