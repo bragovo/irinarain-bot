@@ -36,6 +36,9 @@ pub async fn message_handler(
 }
 
 async fn message_start_handler(bot: &Bot, db: &Postgrest, message: &Message) -> ResponseResult<()> {
+    bot.send_message(message.chat.id, "Привет 👋 Тут можно купить курсы!")
+        .await?;
+
     let mut channels_list = InlineKeyboardMarkup::default();
 
     let text = db
