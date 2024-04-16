@@ -1,6 +1,6 @@
 FROM rust:1-alpine as build
 
-# RUN apk --no-cache add musl-dev pkgconfig openssl-dev
+RUN apk --no-cache add musl-dev
 
 WORKDIR /app
 COPY . .
