@@ -56,13 +56,15 @@ async fn message_start_handler(bot: &Bot, db: &Postgrest, message: &Message) -> 
         })?;
 
     for channel in channels.iter() {
-        channels_list = channels_list.append_row(vec![InlineKeyboardButton::callback(
-            channel.name.clone(),
-            serde_json::to_string(&channel).map_err(|source| RequestError::InvalidJson {
-                source,
-                raw: "".into(),
-            })?,
-        )]);
+        if channel.price > 0 {
+            channels_list = channels_list.append_row(vec![InlineKeyboardButton::callback(
+                channel.title(),
+                serde_json::to_string(&channel).map_err(|source| RequestError::InvalidJson {
+                    source,
+                    raw: "".into(),
+                })?,
+            )]);
+        }
     }
 
     bot.send_message(message.chat.id, "Выберите курс, который хотите купить:")

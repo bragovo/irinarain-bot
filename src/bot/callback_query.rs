@@ -32,7 +32,7 @@ pub async fn callback_query_handler(
                         description: channel.name.to_string(),
                         quantity: "1.00".to_string(),
                         amount: ReceiptItemAmount {
-                            value: "150".to_string(),
+                            value: channel.price.to_string(),
                             currency: "RUB".to_string(),
                         },
                         vat_code: 1,
@@ -56,7 +56,7 @@ pub async fn callback_query_handler(
                     "RUB",
                     vec![LabeledPrice {
                         label: channel.name,
-                        amount: 15000,
+                        amount: channel.price * 100,
                     }],
                 )
                 .need_email(true)

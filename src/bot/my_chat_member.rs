@@ -13,6 +13,7 @@ pub async fn my_chat_member_updated_handler(
             None => "UNNAMED",
         }
         .to_string(),
+        price: 0,
     };
 
     state
