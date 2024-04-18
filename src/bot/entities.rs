@@ -4,6 +4,13 @@ use serde::{Deserialize, Serialize};
 pub struct Channel {
     pub id: i64,
     pub name: String,
+    pub price: i32,
+}
+
+impl Channel {
+    pub fn title(&self) -> String {
+        format!("{} - {}₽", self.name, self.price)
+    }
 }
 
 #[derive(Serialize, Deserialize)]
